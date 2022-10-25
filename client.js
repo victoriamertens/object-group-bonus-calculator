@@ -50,21 +50,139 @@ function calculateIndividualEmployeeBonus(anArray) {
   let rated3Employees = [];
   let rated4Employees = [];
   let rated5Employees = [];
+  let calcBonus = 0;
 
-  for (let i = 0; i < anArray.length; i++) {
-    if (anArray[i].reviewRating <= 2) {
-      sadEmployees.push(anArray[i].name);
-    } else if (anArray[i].reviewRating === 3) {
-      rated3Employees.push(anArray[i].name);
-    } else if (anArray[i].reviewRating === 4) {
-      rated4Employees.push(anArray[i].name);
-    } else if (anArray[i].reviewRating === 5) {
-      rated5Employees.push(anArray[i].name);
+  for (let object of anArray) {
+    //annual salary cap
+    if (object.annualSalary >= 65000) {
+      console.log('Greater than:', object.name);
+      for (let i = 0; i < anArray.length; i++) {
+        if (
+          anArray[i].reviewRating <= 2 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          console.log('2 and length4:', object.name);
+          sadEmployees.push(anArray[i].name);
+          calcBonus = sadEmployees.push(anArray[i].annualSalary * 0.04);
+        } else if (
+          anArray[i].reviewRating <= 2 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          console.log('2 and lengthnot4:', object.name);
+          sadEmployees.push(anArray[i].name);
+          calcBonus = sadEmployees.push(anArray[i].annualSalary * 0);
+        } else if (
+          anArray[i].reviewRating === 3 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated3Employees.push(anArray[i].name);
+          calcBonus = rated3Employees.push(anArray[i].annualSalary * 0.08);
+        } else if (
+          anArray[i].reviewRating === 3 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated3Employees.push(anArray[i].name);
+          calcBonus = rated3Employees.push(anArray[i].annualSalary * 0.03);
+        } else if (
+          anArray[i].reviewRating === 4 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated4Employees.push(anArray[i].name);
+          calcBonus = rated4Employees.push(anArray[i].annualSalary * 0.1);
+        } else if (
+          anArray[i].reviewRating === 4 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated4Employees.push(anArray[i].name);
+          calcBonus = rated4Employees.push(anArray[i].annualSalary * 0.05);
+        } else if (
+          anArray[i].reviewRating === 5 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated5Employees.push(anArray[i].name);
+          calcBonus = rated5Employees.push(anArray[i].annualSalary * 0.13);
+        } else if (
+          anArray[i].reviewRating === 5 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated5Employees.push(anArray[i].name);
+          calcBonus = rated5Employees.push(anArray[i].annualSalary * 0.09);
+        }
+      }
+    } else if (object.annualSalary < 65000) {
+      console.log('Less than:', object.name);
+      for (let i = 0; i < anArray.length; i++) {
+        if (
+          anArray[i].reviewRating <= 2 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          sadEmployees.push(anArray[i].name);
+          calcBonus = sadEmployees.push(anArray[i].annualSalary * 0.05);
+        } else if (
+          anArray[i].reviewRating <= 2 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          sadEmployees.push(anArray[i].name);
+          calcBonus = sadEmployees.push(anArray[i].annualSalary * 0);
+        } else if (
+          anArray[i].reviewRating === 3 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated3Employees.push(anArray[i].name);
+          calcBonus = rated3Employees.push(anArray[i].annualSalary * 0.09);
+        } else if (
+          anArray[i].reviewRating === 3 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated3Employees.push(anArray[i].name);
+          calcBonus = rated3Employees.push(anArray[i].annualSalary * 0.04);
+        } else if (
+          anArray[i].reviewRating === 4 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated4Employees.push(anArray[i].name);
+          calcBonus = rated4Employees.push(anArray[i].annualSalary * 0.11);
+        } else if (
+          anArray[i].reviewRating === 4 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated4Employees.push(anArray[i].name);
+          calcBonus = rated4Employees.push(anArray[i].annualSalary * 0.06);
+        } else if (
+          anArray[i].reviewRating === 5 &&
+          anArray[i].employeeNumber.length === 4
+        ) {
+          rated5Employees.push(anArray[i].name);
+          calcBonus = rated5Employees.push(anArray[i].annualSalary * 0.13);
+        } else if (
+          anArray[i].reviewRating === 5 &&
+          anArray[i].employeeNumber.length !== 4
+        ) {
+          rated5Employees.push(anArray[i].name);
+          calcBonus = rated5Employees.push(anArray[i].annualSalary * 0.1);
+        }
+      }
     }
   }
-  console.log(sadEmployees, rated3Employees, rated4Employees, rated5Employees);
+  console.log(
+    '1:',
+    sadEmployees,
+    '2:',
+    rated3Employees,
+    rated4Employees,
+    rated5Employees
+  );
   return sadEmployees + ' Receive no bonus';
 }
+
+// let endingArr = [];
+// function calcBonus(anEmployeeArr) {
+//   for (let person of anEmployeeArr) {
+//     console.log(person);
+//   }
+// }
+// calcBonus(sadEmployees);
+
 // 2. Conditional to determine addition bonus based on years
 //of service -employee number
 //3. Set parameters on max percent
